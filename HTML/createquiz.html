@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
   <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
@@ -71,11 +71,13 @@ body, html {
     <div class="w3-center">
         <form>
             <p><textarea class="w3-input w3-border" type="text" placeholder="Question" required name="Name"></textarea></p>
-            <button class="w3-black">
+            <div id="answer-container"></div>
+            <input type="text" id="answer-text">
+            <button type="button" id="addAnswer" class="w3-button w3-black">
                 <i class="fa fa-plus-square-o"></i> ADD ANSWER
             </button>
         </form>
-        <button class="w3-button w3-black">
+        <button class="w3-button w3-black" style="margin-top: 1%">
             <i class="fa fa-plus-square-o"></i> ADD QUESTION
         </button>
     </div>
@@ -111,6 +113,7 @@ function w3_close() {
     mySidebar.style.display = "none";
 }
 </script>
+<script src="../JavaScript/quiz-creator.js"></script>
 
 </body>
 </html>
