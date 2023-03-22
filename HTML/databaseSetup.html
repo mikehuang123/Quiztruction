@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>databaseSetup</title>
+</head>
+<body>
+
+    <P>test database page</P>
+
+   
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+    <script  type = module>
+        import db from "../JavaScript/database.js";
+           let GetAccounts = ()=>{
+                db.collection("Account").get().then((querySnapshot) =>{
+                    var accounts = [];
+                    querySnapshot.forEach(doc =>{
+                        accounts.push(doc.data);
+                    });
+                    console.log(querySnapshot);
+                    console.log(accounts);
+                });
+            }
+        window.onload = GetAccounts;
+       
+    </script>
+
+
+</body>
+</html>

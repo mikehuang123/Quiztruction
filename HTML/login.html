@@ -102,22 +102,50 @@
             <div class="signup-box">
                 <input type="text"
                        class="name ele"
-                       placeholder="Enter your name">
+                       id ="signupName"
+                       placeholder="Enter your name"
+                       >
                 <input type="email"
+                        id = "signupEmail"
                        class="email ele"
-                       placeholder="youremail@email.com">
+                       placeholder="youremail@email.com"
+                       >
                 <input type="password"
+                        id="signupPassword1"
                        class="password ele"
-                       placeholder="password">
+                       placeholder="password"
+                       >
                 <input type="password"
+                        id="signupPassword2"
                        class="password ele"
-                       placeholder="Confirm password">
-                <button class="clkbtn">Signup</button>
+                       placeholder="Confirm password"
+                       >
+                <button id = "signBtn" class="clkbtn">Signup</button>
             </div>
         </div>
     </div>
 
-    <script  src="../JavaScript/login-page.js"></script>
+
+    
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+    <script  src="../JavaScript/login-page.js" type = "module">
+        import db from "./database";
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js'
+
+        // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js'
+
+        // Add Firebase products that you want to use
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js'
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js'
+       
+    </script>
+
+    
+
+    
 
 
 <!-- Footer -->
