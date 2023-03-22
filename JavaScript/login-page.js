@@ -42,6 +42,8 @@ document.getElementById("signBtn").onclick = async ()=>{
         return false;
     }
 
+    // add check register email is already register or not here later
+
     // pass all validation - setup database
     try{
        db.collection("Account").add({
@@ -51,11 +53,11 @@ document.getElementById("signBtn").onclick = async ()=>{
        })
        .then(()=>{
             console.log("Account Written");
-            alert(document.getElementById("signupName").value + " Created");
             document.getElementById("signupName").value = "";
             document.getElementById("signupEmail").value = "";
             document.getElementById("signupPassword1").value = "";
             document.getElementById("signupPassword2").value = "";
+            location.reload();
             
        })
        .catch((e) => {
