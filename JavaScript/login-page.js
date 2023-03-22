@@ -51,6 +51,12 @@ document.getElementById("signBtn").onclick = async ()=>{
        })
        .then(()=>{
             console.log("Account Written");
+            alert(document.getElementById("signupName").value + " Created");
+            document.getElementById("signupName").value = "";
+            document.getElementById("signupEmail").value = "";
+            document.getElementById("signupPassword1").value = "";
+            document.getElementById("signupPassword2").value = "";
+            
        })
        .catch((e) => {
             console.log("Error create user... ", e);
