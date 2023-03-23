@@ -101,8 +101,12 @@ document.getElementById("loginBtn").onclick = async ()=>{
                         // set current login id
                         console.log("Login id: " + doc.id);
                         loginId = doc.id;
-                        localStorage.setItem("loginId", doc.id);    //const id = localStorage.getItem("loginId"); 
-                            // clear input field
+
+                        // store id and name in localStorage
+                        localStorage.setItem("loginId", doc.id);    //const id = localStorage.getItem("loginId");
+                        localStorage.setItem("loginName", items.name); 
+
+                        // clear input field
                         document.getElementById("loginEmail").value = "";
                         document.getElementById("loginPassword").value = "";
 

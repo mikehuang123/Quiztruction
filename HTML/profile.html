@@ -56,7 +56,7 @@ body, html {
   </div>
   <div class = "container">
     <div class="card">
-      <h1>User</h1>
+      <h1 id = "title">User</h1>
       <a id="login-button" ms-hide-element="true" href="./login.html" class="button logout login w-button">Login/Register</a>
       <button id = "logoutBtn" style="visibility:hidden;">Logout</button>
     </div>
@@ -117,7 +117,9 @@ body, html {
     if(id != "" && id != null){
       console.log("login");
       document.getElementById("logoutBtn").style.visibility = "visible";
-      document.getElementById("login-button").style.visibility = "hidden";   
+      document.getElementById("login-button").style.visibility = "hidden"; 
+      
+      document.getElementById("title").innerHTML = "Welcome, " + localStorage.getItem("loginName");
     
     }
     else{
