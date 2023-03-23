@@ -54,6 +54,13 @@ body, html {
       <i class="fa fa-bars"></i>
     </a>
   </div>
+  <div class = "container">
+    <div class="card">
+      <h1>User</h1>
+      <a id="login-button" ms-hide-element="true" href="./login.html" class="button logout login w-button">Login/Register</a>
+      <button id = "logoutBtn" style="visibility:hidden;">Logout</button>
+    </div>
+  </div>
 </div>
 
 <!-- Sidebar on small screens when clicking the menu icon -->
@@ -66,16 +73,9 @@ body, html {
   <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
 </nav>
 
-<div class = "container">
-  	
-  <a id="login-button" ms-hide-element="true" href="" class="button logout login w-button">Login</a>
-  <a>Login</a>
-</div>
 
-<div class="card">
-  <h1>User</h1>
-  <a id="login-button" ms-hide-element="true" href="./login.html" class="button logout login w-button">Login/Register</a>
-</div>
+
+
 
 
 
@@ -86,30 +86,51 @@ body, html {
 </footer> -->
  
 <script>
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
-}
-
-
-// Toggle between showing and hiding the sidebar when clicking the menu icon
-var mySidebar = document.getElementById("mySidebar");
-
-function w3_open() {
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-  } else {
-    mySidebar.style.display = 'block';
+  // Modal Image Gallery
+  function onClick(element) {
+    document.getElementById("img01").src = element.src;
+    document.getElementById("modal01").style.display = "block";
+    var captionText = document.getElementById("caption");
+    captionText.innerHTML = element.alt;
   }
-}
 
-// Close the sidebar with the close button
-function w3_close() {
-    mySidebar.style.display = "none";
-}
+
+  // Toggle between showing and hiding the sidebar when clicking the menu icon
+  var mySidebar = document.getElementById("mySidebar");
+
+  function w3_open() {
+    if (mySidebar.style.display === 'block') {
+      mySidebar.style.display = 'none';
+    } else {
+      mySidebar.style.display = 'block';
+    }
+  }
+
+  // Close the sidebar with the close button
+  function w3_close() {
+      mySidebar.style.display = "none";
+  }
+
+  let checkLogin = ()=> {
+    const id = localStorage.getItem("loginId");
+    if(id != "" && id != null){
+      console.log("login");
+      document.getElementById("logoutBtn").style.visibility = "visible";
+      document.getElementById("login-button").style.visibility = "hidden";   
+    
+    }
+    else{
+      console.log("not login");
+      document.getElementById("logoutBtn").style.visibility = "hidden";
+      document.getElementById("login-button").style.visibility = "visible";
+    }
+  }
+  checkLogin();
+
+  document.getElementById("logoutBtn").onclick =  () => {
+      localStorage.removeItem('loginId');
+      location.reload();
+  };
 </script>
 
 </body>
