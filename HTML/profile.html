@@ -111,6 +111,7 @@ body, html {
       mySidebar.style.display = "none";
   }
 
+  // Check login status
   let checkLogin = ()=> {
     const id = localStorage.getItem("loginId");
     if(id != "" && id != null){
@@ -127,6 +128,7 @@ body, html {
   }
   checkLogin();
 
+  // logout button listener
   document.getElementById("logoutBtn").onclick =  () => {
       localStorage.removeItem('loginId');
       location.reload();
