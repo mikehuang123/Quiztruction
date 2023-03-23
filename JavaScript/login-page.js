@@ -71,3 +71,69 @@ document.getElementById("signBtn").onclick = async ()=>{
     
 }
 
+
+document.getElementById("loginBtn").onclick = async ()=>{
+    // when login clicked
+    console.log("Login clicked");
+
+
+    if(document.getElementById("loginEmail").value == ""){
+        alert("Email must be filled out");
+        return false;
+    }
+
+    if(document.getElementById("loginPassword").value == ""){
+        alert("Password must be filled out");
+        return false;
+    }
+
+    let loginId = null;
+
+    // pass all validation
+    try{
+        db.collection('Account').get()
+            .then((snapShot) =>{
+                snapShot.docs.forEach((doc => {
+                    let items = doc.data();
+                    //items = JSON.stringify(items);
+                
+                if(document.getElementById("loginEmail").value == items.email && document.getElementById("loginPassword").value == items.password){
+                        // set current login id
+                        console.log("Login id: " + doc.id);
+                        loginId = doc.id;
+                        localStorage.setItem("loginId", doc.id);    //const id = localStorage.getItem("loginId"); 
+                            // clear input field
+                        document.getElementById("loginEmail").value = "";
+                        document.getElementById("loginPassword").value = "";
+
+
+                }
+        
+                }))}
+            )
+            .finally(()=>{
+                if(loginId != null){
+                    // clear input field
+                    document.getElementById("loginEmail").value = "";
+                    document.getElementById("loginPassword").value = "";
+            
+                    // -> profile page
+                    window.location.href = "profile.html"  // change to the actual address after we host it if it doesnt work
+            
+                }
+                else{
+                    alert("Login failed, please check your email or password...");
+                }
+            });
+
+
+    } catch(e){
+        console.error("Error login user... " , e);
+    }
+
+    
+    
+   
+
+   
+}
