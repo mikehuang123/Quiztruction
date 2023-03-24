@@ -1,9 +1,9 @@
 {
-    "module": {
+    "quizInfo": {
       "number": 1,
       "name": "Mathematics",
-      "questions": 30,
-      "revision": "2017-08-13"
+      "questions": 2,
+      "difficulty": "medium"
     },
     "questions": [
       {
@@ -14,7 +14,7 @@
           "0.018",
           "0.18"
         ],
-        "correct_answer": 1
+        "correctAnswer": 1
       },
       {
         "number": 2,
@@ -25,7 +25,7 @@
           "14",
           "15"
         ],
-        "correct_answer": 4
+        "correctAnswer": 4
       }
     ]
   }
