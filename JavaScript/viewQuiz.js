@@ -48,13 +48,23 @@ db.collection("Quiz").get().then((querySnapshot) => {
             </li>
         `).join("") : '';
 
+        
+
       questionItem.innerHTML = `
-        <h3>${question.question}  (Correct: ${question.correctAnswer})</h3>
+        <h3>${question.question} </h3>
         <ul class="answer-list">
           ${answerList}
-         
         </ul>
+        <button class="show-answer-btn">Show Answer</button>
+        <p class="answer" style="display: none;">Correct answer is: ${question.answers[question.correctAnswer-1]}</p>
       `;
+      // Add event listener to the show answer button
+      const showAnswerBtn = questionItem.querySelector(".show-answer-btn");
+      const answer = questionItem.querySelector(".answer");
+      showAnswerBtn.addEventListener("click", () => {
+        answer.style.display = "block";
+      });
+
         
         questionList.appendChild(questionItem);
       });
