@@ -17,44 +17,37 @@ const quizId = localStorage.getItem("quizId");
 // Get a reference to the quiz document in the Firestore database
 const quizRef = db.collection("Quiz").doc(quizId);
 let quizNumber;
-
+let userId;
 // Get the quiz info, questions, and answers from the database
 quizRef.get().then((doc) => {
   if (doc.exists) {
     const data = doc.data();
 
     // Update the quiz info input fields
-    quizNumber = data.quizInfo[0]
-    document.getElementById("quiz-name").value = data.quizInfo[1];
-    document.getElementById("quiz-difficulty").value = data.quizInfo[3];
-    document.getElementById("quiz-questions").value = data.quizInfo[2];
+    quizNumber = data.quizInfo.number;
+    userId = data.quizInfo.userId;
+    document.getElementById("quiz-name").value = data.quizInfo.name;
+    document.getElementById("quiz-difficulty").value = data.quizInfo.difficulty;
+    document.getElementById("quiz-questions").value = data.quizInfo.questions;
 
     // Loop through each question and update the input fields
-    data.questions.forEach((question, index) => {
+    Object.values(data.Questions).forEach((question, index) => {
       const questionDiv = document.createElement("div");
       questionDiv.innerHTML = `
-        <h3>Question ${index + 1}</h3>
-        <label>Question:</label>
-        <input type="text" name="question-${index + 1}" value="${question.question}">
-        <br>
-        <label>Answer 1:</label>
-        <input type="text" name="answer-${index + 1}-1" value="${question.answers[0]}">
-        <br>
-        <label>Answer 2:</label>
-        <input type="text" name="answer-${index + 1}-2" value="${question.answers[1]}">
-        <br>
-        <label>Answer 3:</label>
-        <input type="text" name="answer-${index + 1}-3" value="${question.answers[2]}">
-        <br>
+    <h3>Question ${index + 1}</h3>
+    <label>Question:</label>
+    <input  class="question-text-${index + 1}" type="text" name="question-${index + 1}" value="${question.question}">
+    <br>
+        ${question.answers.map((answer, answerIndex) => `
+            <label>Answer ${answerIndex + 1}:</label>
+            <input class="answer-${index + 1}" type="text" name="answer-${index + 1}-${answerIndex + 1}" value="${answer}">
+            <br>
+        `).join('')}
         <label>Correct Answer:</label>
-        <select name="correct-answer-${index + 1}">
-          <option value="1" ${question.correctAnswer === 1 ? "selected" : ""}>Answer 1</option>
-          <option value="2" ${question.correctAnswer === 2 ? "selected" : ""}>Answer 2</option>
-          <option value="3" ${question.correctAnswer === 3 ? "selected" : ""}>Answer 3</option>
-        </select>
-      `;
-      document.getElementById("questions-container").appendChild(questionDiv);
-    });
+        <input class="correct-answer" type="text" name="correct-answer-${index + 1}" value="${question.correctAnswer}">
+        `;
+        document.getElementById("questions-container").appendChild(questionDiv);
+        });
   } else {
     console.log("No such document!");
   }
@@ -77,42 +70,46 @@ form.addEventListener('submit', async (e) => {
   const quizName = form.name.value;
   const quizDifficulty = form.difficulty.value;
 
-  // Construct updated quiz object
+  // Construct updated quiz object 
   const updatedQuiz = {
     quizInfo: {
         number : quizNumber,
-      name: quizName,
-      difficulty: quizDifficulty,
-      userId: "VXZetFDhvs9sKTtNrAUs"
+        name: quizName,
+        difficulty: quizDifficulty,
+        questions: document.getElementById("quiz-questions").value,
+        userId: userId
     },
-    questions: []
+    Questions: {}
   };
 
   // Loop through each question and update
   const questions = document.querySelectorAll('.question');
-  questions.forEach((question) => {
-    const questionNumber = question.dataset.questionNumber;
-    const questionText = question.querySelector('.question-text').value;
-    const answers = question.querySelectorAll('.answer');
-    const correctAnswer = question.querySelector('.correct-answer').value;
+    for(i = 0; i < document.getElementById("quiz-questions").value; i++){
+            
+        const questionNumber = i+1;
+        const questionText = questions[0].querySelector(`.question-text-${i+1}`).value;
+        const answers = questions[0].querySelectorAll(`.answer-${i+1}`);
+    
+        const correctAnswer = questions[0].querySelector('.correct-answer').value;
+        const updatedQuestion = {
+            
+            number: questionNumber,
+            question: questionText,
+            answers: [],
+            correctAnswer: correctAnswer
+        
+        };
 
-    const updatedQuestion = {
-      map: {
-        number: questionNumber,
-        question: questionText,
-        answers: [],
-        correctAnswer: correctAnswer
-      }
-    };
-
-    // Loop through each answer and add to question
-    answers.forEach((answer) => {
-      updatedQuestion.map.answers.push(answer.value);
+        // Loop through each answer and add to question
+        answers.forEach((answer, answerIndex) => {
+            updatedQuestion.answers[answerIndex] = answer.value;     
     });
+        // Add updated question to updated quiz object
+        updatedQuiz.Questions[`question${i+1}`] = (updatedQuestion);
+        console.log(updatedQuiz.Questions[0]);
+    }
+   
 
-    // Add updated question to updated quiz object
-    updatedQuiz.questions.push(updatedQuestion);
-  });
 
   // Update quiz in Firestore
   try {
