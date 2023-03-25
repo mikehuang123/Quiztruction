@@ -6,27 +6,33 @@
       "difficulty": "medium",
       "userId" : "VXZetFDhvs9sKTtNrAUs"
     },
-    "questions": [
+    "Questions": [
       {
-        "number": 1,
-        "question": "Eighteen thousandths, written as a decimal, is:",
-        "answers": [
-          "0.0018",
-          "0.018",
-          "0.18"
-        ],
-        "correctAnswer": 1
+        "question1":{
+          "number": 1,
+          "question": "Eighteen thousandths, written as a decimal, is:",
+          "answers": [
+            "0.0018",
+            "0.018",
+            "0.18"
+          ],
+          "correctAnswer": 1
+        }
+       
       },
       {
-        "number": 2,
-        "question": "The next number in the sequence <b>1, 3, 6, 10, </b> is:",
-        "answers": [
-          "12",
-          "13",
-          "14",
-          "15"
-        ],
-        "correctAnswer": 4
+        "question2":{
+          "number": 2,
+          "question": "The next number in the sequence <b>1, 3, 6, 10, </b> is:",
+          "answers": [
+            "12",
+            "13",
+            "14",
+            "15"
+          ],
+          "correctAnswer": 4
+        }
+       
       }
     ]
   }

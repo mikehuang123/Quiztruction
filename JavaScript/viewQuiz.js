@@ -28,9 +28,9 @@ db.collection("Quiz").get().then((querySnapshot) => {
       const quizInfo = document.createElement("div");
       quizInfo.classList.add("quiz-info");
       quizInfo.innerHTML = `
-        <h2>${quizData.quizInfo[0]}. ${quizData.quizInfo[1]}</h2>
-        <p>Difficulty: ${quizData.quizInfo[3]}</p>
-        <p>Number of Questions: ${quizData.quizInfo[2]}</p>
+        <h2>${quizData.quizInfo.number}. ${quizData.quizInfo.name}</h2>
+        <p>Difficulty: ${quizData.quizInfo.difficulty}</p>
+        <p>Number of Questions: ${quizData.quizInfo.questions}</p>
         <button class="update-quiz-btn">Update Quiz</button>
       `;
         // Add event listener to the update quiz button
@@ -47,7 +47,9 @@ db.collection("Quiz").get().then((querySnapshot) => {
        // Add each question to the container
        const questionList = document.createElement("ul");
        questionList.classList.add("question-list");
-      quizData.questions.forEach((question) => {
+        console.log(quizData.Questions);
+
+        Object.values(quizData.Questions).forEach((question) => {
         const questionItem = document.createElement("li");
 
         const answerList = question.answers ? question.answers.map((answer, index) => `

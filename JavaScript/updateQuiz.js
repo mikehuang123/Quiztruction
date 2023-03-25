@@ -16,6 +16,7 @@ const quizId = localStorage.getItem("quizId");
 
 // Get a reference to the quiz document in the Firestore database
 const quizRef = db.collection("Quiz").doc(quizId);
+let quizNumber;
 
 // Get the quiz info, questions, and answers from the database
 quizRef.get().then((doc) => {
@@ -23,6 +24,7 @@ quizRef.get().then((doc) => {
     const data = doc.data();
 
     // Update the quiz info input fields
+    quizNumber = data.quizInfo[0]
     document.getElementById("quiz-name").value = data.quizInfo[1];
     document.getElementById("quiz-difficulty").value = data.quizInfo[3];
     document.getElementById("quiz-questions").value = data.quizInfo[2];
@@ -62,47 +64,66 @@ quizRef.get().then((doc) => {
 
 
 
-// Add event listener to the form submit button
-document.getElementById("update-quiz-form").addEventListener('submit', async (e) => {
-    e.preventDefault();
-  
-    // Get the quiz ID from local storage
-    const quizId = localStorage.getItem('quizId');
-  
-    // Get the quiz document from Firestore
-    const quizDocRef = await db.collection('Quiz').doc(quizId).get();
-    const quizDocData = quizDocRef.data();
-  
-    // Update the quiz document with the form data
-    const updatedQuizData = {
-      quizInfo: [
-        parseInt(form.number.value),
-        form.name.value,
-        parseInt(form.questions.value),
-        form.difficulty.value,
-        quizInfo[4]
-    ],
-      questions: [],
+
+
+const form = document.querySelector('form');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // Get quiz id from localStorage
+  const quizId = localStorage.getItem('quizId');
+
+  // Get form values
+  const quizName = form.name.value;
+  const quizDifficulty = form.difficulty.value;
+
+  // Construct updated quiz object
+  const updatedQuiz = {
+    quizInfo: {
+        number : quizNumber,
+      name: quizName,
+      difficulty: quizDifficulty,
+      userId: "VXZetFDhvs9sKTtNrAUs"
+    },
+    questions: []
+  };
+
+  // Loop through each question and update
+  const questions = document.querySelectorAll('.question');
+  questions.forEach((question) => {
+    const questionNumber = question.dataset.questionNumber;
+    const questionText = question.querySelector('.question-text').value;
+    const answers = question.querySelectorAll('.answer');
+    const correctAnswer = question.querySelector('.correct-answer').value;
+
+    const updatedQuestion = {
+      map: {
+        number: questionNumber,
+        question: questionText,
+        answers: [],
+        correctAnswer: correctAnswer
+      }
     };
-  
-    // Loop through each question and update the answers
-    form.querySelectorAll('.question').forEach((question, index) => {
-      const answers = [];
-      question.querySelectorAll('.answer').forEach((answer) => {
-        answers.push(answer.value);
-      });
-  
-      updatedQuizData.questions.push({
-        number: index + 1,
-        question: question.querySelector('.question-text').value,
-        answers: answers,
-        correctAnswer: parseInt(question.querySelector('.correct-answer').value),
-      });
+
+    // Loop through each answer and add to question
+    answers.forEach((answer) => {
+      updatedQuestion.map.answers.push(answer.value);
     });
-  
-    // Update the quiz document in Firestore
-    await db.collection('Quiz').doc(quizId).update(updatedQuizData);
-  
-    // Redirect back to the view quiz page
-    window.location = 'viewquizzes.html';
+
+    // Add updated question to updated quiz object
+    updatedQuiz.questions.push(updatedQuestion);
   });
+
+  // Update quiz in Firestore
+  try {
+    await db.collection('Quiz').doc(quizId).update(updatedQuiz);
+    alert('Quiz updated successfully!');
+  } catch (error) {
+    console.error(error);
+    alert('Error updating quiz.');
+  }
+});
+  
+
+
+ 
