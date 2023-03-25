@@ -67,22 +67,41 @@ body, html {
 
 <!-- update quiz container -->
 <div>
-  <h1>Quiz Names: placeholder</h1>
-  <form>
+  <h1>Update</h1>
+  <!-- <form>
     <label for="question">Question:</label><br>
     <input type="text" id="question" name="question" value="question"><br>
     <label for="anwser">Anwser:</label><br>
     <input type="text" id="anwser" name="anwser" value="anwser"><br>
     <input type="submit" value="Submit">
-  </form>
+  </form> -->
+  <form>
+    <label for="name" >Name:</label>
+    <input type="text" id = "quiz-name" name="name" required><br><br>
+
+    <label for="questions">Number of Questions:</label>
+    <input type="number" id="quiz-questions" name="questions" required><br><br>
+
+    <label for="difficulty">Difficulty:</label>
+    <select id="quiz-difficulty" name="difficulty" required>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+    </select><br><br>
+
+    <div id="questions-container"></div>
+
+    <button id="add-question">Add Question</button>
+    <button id="update-quiz-form">Update Quiz</button>
+</form>
 </div>
 
 
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+<script src="../JavaScript/updateQuiz.js"></script>
 
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-64">
-  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-</footer>
  
 <script>
 // Modal Image Gallery

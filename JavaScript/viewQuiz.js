@@ -31,8 +31,17 @@ db.collection("Quiz").get().then((querySnapshot) => {
         <h2>${quizData.quizInfo[0]}. ${quizData.quizInfo[1]}</h2>
         <p>Difficulty: ${quizData.quizInfo[3]}</p>
         <p>Number of Questions: ${quizData.quizInfo[2]}</p>
+        <button class="update-quiz-btn">Update Quiz</button>
       `;
-   
+        // Add event listener to the update quiz button
+        const updateBtn = quizInfo.querySelector(".update-quiz-btn");
+        updateBtn.addEventListener("click", () => {
+            // here need to add validation if the current user is the quiz creator --> quizData.quizInfo[4] is the creator id
+                console.log("Update quiz: " + doc.id);
+                localStorage.setItem("quizId", doc.id);
+                window.location = "updatequiz.html";
+        });
+
       quizContainer.appendChild(quizInfo);
   
        // Add each question to the container
@@ -56,14 +65,19 @@ db.collection("Quiz").get().then((querySnapshot) => {
           ${answerList}
         </ul>
         <button class="show-answer-btn">Show Answer</button>
+        
         <p class="answer" style="display: none;">Correct answer is: ${question.answers[question.correctAnswer-1]}</p>
       `;
+
       // Add event listener to the show answer button
       const showAnswerBtn = questionItem.querySelector(".show-answer-btn");
       const answer = questionItem.querySelector(".answer");
       showAnswerBtn.addEventListener("click", () => {
         answer.style.display = "block";
       });
+
+      
+
 
         
         questionList.appendChild(questionItem);
