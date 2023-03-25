@@ -39,7 +39,7 @@ db.collection("Quiz").get().then((querySnapshot) => {
             // here need to add validation if the current user is the quiz creator --> quizData.quizInfo[4] is the creator id
                 console.log("Update quiz: " + doc.id);
                 localStorage.setItem("quizId", doc.id);
-                window.location = "updatequiz.html";
+               // window.location = "updatequiz.html";
         });
 
       quizContainer.appendChild(quizInfo);
