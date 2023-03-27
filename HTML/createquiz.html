@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+<script src="jquery-3.6.3.min.js"></script>
   <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
@@ -70,15 +71,18 @@ body, html {
     <h3 class="w3-center">CREATE A QUIZ</h3>
     <div class="w3-center">
         <form>
-            <p><textarea class="w3-input w3-border" type="text" placeholder="Question" required name="Name"></textarea></p>
-            <div id="answer-container"></div>
+            <p><textarea id="question" class="w3-input w3-border" type="text" placeholder="Question" required name="Name"></textarea></p>
+            <div id="answer-container0"></div>
             <input type="text" id="answer-text">
             <button type="button" id="addAnswer" class="w3-button w3-black">
                 <i class="fa fa-plus-square-o"></i> ADD ANSWER
             </button>
         </form>
-        <button class="w3-button w3-black" style="margin-top: 1%">
+        <button id="addQuestion" class="w3-button w3-black" style="margin-top: 1%">
             <i class="fa fa-plus-square-o"></i> ADD QUESTION
+        </button>
+        <button id="createQuiz" onclick="createQuizzes()" class="w3-button w3-black" style="margin-top: 1%">
+            <i class="fa fa-plus-square-o"></i> CREATE QUIZ
         </button>
     </div>
   </div>
@@ -113,7 +117,20 @@ function w3_close() {
     mySidebar.style.display = "none";
 }
 </script>
-<script src="../JavaScript/quiz-creator.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+<script src="../JavaScript/quiz-creator.js">
+    import db from "./database";
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js'
 
+    // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js'
+
+    // Add Firebase products that you want to use
+    import { getAuth } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js'
+    import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js'
+    
+</script>
 </body>
 </html>
