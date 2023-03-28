@@ -54,8 +54,9 @@ db.collection("Quiz").get().then((querySnapshot) => {
       // Add event listener to the play quiz button
       const playBtn = quizInfo.querySelector(".playQuizBtn");
       playBtn.addEventListener("click", () => {
+
           console.log("play clicked " + quizData);
-          localStorage.setItem("quiz",quizData);
+          localStorage.setItem("quiz",JSON.stringify(quizData));
           window.location = "playquiz.html";
       });
 
