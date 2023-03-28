@@ -29,18 +29,35 @@ db.collection("Quiz").get().then((querySnapshot) => {
       quizInfo.classList.add("quiz-info");
       quizInfo.innerHTML = `
         <h2>${quizData.quizInfo.number}. ${quizData.quizInfo.name}</h2>
+       
         <p>Difficulty: ${quizData.quizInfo.difficulty}</p>
         <p>Number of Questions: ${quizData.quizInfo.questions}</p>
+        <button class = "playQuizBtn">Play Quiz</button>
         <button class="update-quiz-btn">Update Quiz</button>
       `;
+      console.log("id " + quizData.quizInfo.userId);
         // Add event listener to the update quiz button
         const updateBtn = quizInfo.querySelector(".update-quiz-btn");
         updateBtn.addEventListener("click", () => {
-            // here need to add validation if the current user is the quiz creator --> quizData.quizInfo[4] is the creator id
-                console.log("Update quiz: " + doc.id);
-                localStorage.setItem("quizId", doc.id);
-                window.location = "updatequiz.html";
+            // validation if the current user is the quiz creator 
+            if(localStorage.getItem("userId") == quizData.quizInfo.userId){
+              console.log("Update quiz: " + doc.id);
+              localStorage.setItem("quizId", doc.id);
+              window.location = "updatequiz.html";
+            }
+            else{
+              // only quiz creator can update the quiz
+              alert("Sorry, you don't have the access to update this quiz");
+            }   
         });
+
+      // Add event listener to the play quiz button
+      const playBtn = quizInfo.querySelector(".playQuizBtn");
+      playBtn.addEventListener("click", () => {
+          console.log("play clicked " + quizData);
+          localStorage.setItem("quiz",quizData);
+          window.location = "playquiz.html";
+      });
 
       quizContainer.appendChild(quizInfo);
   
