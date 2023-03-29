@@ -1,0 +1,37 @@
+body{
+
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: white;
+ 
+  }
+
+  hr{
+    border: 5px solid green;
+    border-radius: 5px;
+  }
+
+  h1{
+    text-align:center
+  }
+  h3{
+    padding-top: 2%;
+  }
+  
+.quizContainer{
+  padding-top: 5%;
+  
+}
+
+.question-list{
+  padding-left: 3%;
+  
+}
+
+.answer-list{
+  padding-left: 2%;
+}

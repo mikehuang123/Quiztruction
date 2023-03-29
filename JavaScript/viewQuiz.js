@@ -28,20 +28,21 @@ db.collection("Quiz").get().then((querySnapshot) => {
       const quizInfo = document.createElement("div");
       quizInfo.classList.add("quiz-info");
       quizInfo.innerHTML = `
+      <hr>
         <h2>${quizData.quizInfo.number}. ${quizData.quizInfo.name}</h2>
        
         <p>Difficulty: ${quizData.quizInfo.difficulty}</p>
         <p>Number of Questions: ${quizData.quizInfo.questions}</p>
         <button class = "playQuizBtn">Play Quiz</button>
         <button class="update-quiz-btn">Update Quiz</button>
+        
       `;
-      console.log("id " + quizData.quizInfo.userId);
         // Add event listener to the update quiz button
         const updateBtn = quizInfo.querySelector(".update-quiz-btn");
         updateBtn.addEventListener("click", () => {
             // validation if the current user is the quiz creator 
             if(localStorage.getItem("userId") == quizData.quizInfo.userId){
-              console.log("Update quiz: " + doc.id);
+              //console.log("Update quiz: " + doc.id);
               localStorage.setItem("quizId", doc.id);
               window.location = "updatequiz.html";
             }
@@ -54,8 +55,6 @@ db.collection("Quiz").get().then((querySnapshot) => {
       // Add event listener to the play quiz button
       const playBtn = quizInfo.querySelector(".playQuizBtn");
       playBtn.addEventListener("click", () => {
-
-          console.log("play clicked " + quizData);
           localStorage.setItem("quiz",JSON.stringify(quizData));
           window.location = "playquiz.html";
       });
@@ -65,7 +64,6 @@ db.collection("Quiz").get().then((querySnapshot) => {
        // Add each question to the container
        const questionList = document.createElement("ul");
        questionList.classList.add("question-list");
-        console.log(quizData.Questions);
 
         Object.values(quizData.Questions).forEach((question) => {
         const questionItem = document.createElement("li");
@@ -86,14 +84,22 @@ db.collection("Quiz").get().then((querySnapshot) => {
         </ul>
         <button class="show-answer-btn">Show Answer</button>
         
+        
         <p class="answer" style="display: none;">Correct answer is: ${question.answers[question.correctAnswer-1]}</p>
+        
       `;
 
       // Add event listener to the show answer button
       const showAnswerBtn = questionItem.querySelector(".show-answer-btn");
       const answer = questionItem.querySelector(".answer");
       showAnswerBtn.addEventListener("click", () => {
-        answer.style.display = "block";
+        if(answer.style.display == "block"){
+          answer.style.display ="none";
+        }
+        else{
+          answer.style.display = "block";
+        }
+        
       });
 
       
@@ -103,8 +109,9 @@ db.collection("Quiz").get().then((querySnapshot) => {
         questionList.appendChild(questionItem);
       });
       quizContainer.appendChild(questionList);
-  
+      
        // Add the quiz container to the quiz list container
        quizListContainer.appendChild(quizContainer);
+
     });
   });
