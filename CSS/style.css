@@ -61,17 +61,22 @@ body{
 	background-color:#c7dddf;
 }
 
-.evaluate,.next{
+.back,.next,.submit{
 	width:30vw;
 	height: 8vh;
 	padding: 5px;
 	font-size: larger;
 }
-.evaluate{
+.back{
 
 	background-color: #50DBB4;
 }
 .next{
 	color: white;
 	background-color: #BF3325;
+}
+
+.submit{
+
+	background-color: #511ef7;
 }
