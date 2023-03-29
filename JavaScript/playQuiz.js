@@ -10,12 +10,14 @@ let result = document.getElementById("resultDiv");
 let options = [document.getElementById("op1"), document.getElementById("op2"),document.getElementById("op3"),document.getElementById("op4")];
 
 //buttones
-let buttons = [document.getElementById("backBtn") , document.getElementById("nextBtn"), document.getElementById("submitBtn")];
+let nextBtn = document.getElementById("nextBtn");
+let submitBtn = document.getElementById("submitBtn");
 
 //score
 let score = 0;
 
 let isEnd = false;
+let select = "asd";
 
 console.log(quizSize);
 
@@ -40,54 +42,54 @@ let setupQuiz = () =>{
     for(let i = 0; i < 4; i++){
         options[i].addEventListener("click", () => {
             console.log("Click " + options[i].innerText);
+            select = i;
         });
     }
 }
 setupQuiz();
 
-// Add event listener to the back button
-buttons[0].addEventListener("click", () => {
-    if(pointer > 0){
-        pointer--;
-        setupQuiz();
-    }
+// // Add event listener to the back button
+// buttons[0].addEventListener("click", () => {
+//     if(pointer > 0){
+//         pointer--;
+//         setupQuiz();
+//     }
     
-});
+// });
 
 
 // Add event listener to the next button
-buttons[1].addEventListener("click", () => {
+nextBtn.addEventListener("click", () => {
     if(pointer < quizSize-1){
-        pointer++;
-        setupQuiz();
-    }
+        // check answer and update score
+        console.log(select +" " + Object.values(quizData.Questions)[pointer].correctAnswer);
+        if(select.toString() == Object.values(quizData.Questions)[pointer].correctAnswer.toString()){
+            score += 1;
+        }
+        select = "";
 
-    if(pointer >= quizSize - 1){
-        // end show submit
-        buttons[2].style.visibility = "visible";
-    }
-});
 
-// Add event listener to the next button
-buttons[1].addEventListener("click", () => {
-    if(pointer < quizSize-1){
+        // increment pointer and setup quiz
         pointer++;
         setupQuiz();
     }
 
     if(pointer >= quizSize - 1){
         // end show final result
-        buttons[2].style.visibility = "visible";
+        nextBtn.style.visibility = "hidden";
+        submitBtn.style.visibility = "visible";
+        
     }
 });
 
 // Add event listener to the submit button
-buttons[2].addEventListener("click", () => {
-    buttons[2].style.visibility = "hidden";
+submitBtn.addEventListener("click", () => {
+    submitBtn.style.visibility = "hidden";
     // show result
     result.innerHTML = `<h1>Your Result: ${score}</h1>`;
     setTimeout(()=>{
         result.innerHTML = "";
+        nextBtn.style.visibility = "visible";
         window.location = "viewquizzes.html"
     }, 10000);
 
