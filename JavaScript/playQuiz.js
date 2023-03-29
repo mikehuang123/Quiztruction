@@ -37,12 +37,11 @@ let setupQuiz = () =>{
         
     }
 
-    // for(option in options){
-    //     option.addEventListener("click", () => {
-
-    //         console.log("Click " + option.values);
-    //     });
-    // }
+    for(let i = 0; i < 4; i++){
+        options[i].addEventListener("click", () => {
+            console.log("Click " + options[i].innerText);
+        });
+    }
 }
 setupQuiz();
 

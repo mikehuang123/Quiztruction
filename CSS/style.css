@@ -51,6 +51,11 @@ body{
 .option:hover{
 	background-color: lightgoldenrodyellow;
 }
+
+.option:visited{
+	background-color: lightgoldenrodyellow;
+}
+
 .navigation{
 	width: 80vw;
 	height: 10vh;
@@ -67,12 +72,15 @@ body{
 	padding: 5px;
 	font-size: larger;
 }
+
+.back:hover,.next:hover,.submit:hover{
+	background-color: lightgoldenrodyellow;
+}
 .back{
 
 	background-color: #50DBB4;
 }
 .next{
-	color: white;
 	background-color: #BF3325;
 }
 
