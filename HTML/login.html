@@ -8,14 +8,14 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
-            body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+             body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif; padding-top: 1%; } 
 
             body, html {
             height: 100%;
             line-height: 1.8;
             }
 
-            /* Full height image header */
+         
             .bgimg-1 {
             background-position: center;
             background-size: cover;
@@ -31,6 +31,13 @@
             width: 5%;
             height: 5%;
             } 
+
+            .outter{
+                padding-top: 1%;
+                overflow-y: auto;
+     
+            }
+
         </style>
         <link rel="stylesheet" href="../CSS/login.css">
        
@@ -67,13 +74,14 @@
     <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
     </nav>
 
+    <div class = "outter">
     <header>
         <h1 class="heading">Quizstruction</h1>
         <h3 class="title">Sliding Login & Registration Form</h3>
     </header>
  
     <!-- container div -->
-    <div class="container">
+    <div class="container" >
  
         <!-- upper button section to select
              the login or signup form -->
@@ -127,7 +135,7 @@
         </div>
     </div>
 
-
+</div>
     
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
