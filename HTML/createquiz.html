@@ -70,6 +70,17 @@ body, html {
 <div class="w3-container" style="padding:128px 16px" id="about">
     <h3 class="w3-center">CREATE A QUIZ</h3>
     <div class="w3-center">
+        <div id="quiz-info">
+            <label for="difficulties">Choose a difficulty:</label>
+            <select name="difficulties" id="difficulties">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <br/><br/>
+            <label for="quiz-name">Quiz Name: </label>
+            <input name="quiz-name" type="text" id="quiz-name">
+        </div>
         <form>
             <p><textarea id="question" class="w3-input w3-border" type="text" placeholder="Question" required name="Name"></textarea></p>
             <div id="answer-container0"></div>

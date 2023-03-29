@@ -77,15 +77,17 @@ questionButton.addEventListener("click", function() {
 
 
 function createQuizzes(){
-    if(checkQuestionCompleted()){
+    const quizName = document.getElementById("quiz-name");
+    const difficulty = document.getElementById("difficulties");
+    if(checkQuestionCompleted() && quizName.value != null && quizName.value != ""){
         firebase.auth().onAuthStateChanged(function(user) {
             var forms = document.getElementsByTagName('form');
             var quizzes = {};
             var quizInfo = {
-                difficulty: "medium",
-                name: "mathematics",
+                difficulty: difficulty.value,
+                name: quizName.value,
                 number: "1",
-                questions: "2",
+                questions: questionNumber + 1,
                 userId: localStorage.getItem("loginId")
             };
             for(var i = 0; i < forms.length; i++){
