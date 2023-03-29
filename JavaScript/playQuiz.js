@@ -42,7 +42,7 @@ let setupQuiz = () =>{
     for(let i = 0; i < 4; i++){
         options[i].addEventListener("click", () => {
             console.log("Click " + options[i].innerText);
-            select = i;
+            select = i+1;
         });
     }
 }
