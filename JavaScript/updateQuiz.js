@@ -34,17 +34,20 @@ quizRef.get().then((doc) => {
     Object.values(data.Questions).forEach((question, index) => {
       const questionDiv = document.createElement("div");
       questionDiv.innerHTML = `
-    <h3>Question ${index + 1}</h3>
-    <label>Question:</label>
+      <div class = inputDiv>
+    <h3>Question ${index + 1}</h3><hr>
+   
+    <label>Question:</label> 
     <input  class="question-text-${index + 1}" type="text" name="question-${index + 1}" value="${question.question}">
-    <br>
+    <br><br>
         ${question.answers.map((answer, answerIndex) => `
             <label>Answer ${answerIndex + 1}:</label>
             <input class="answer-${index + 1}" type="text" name="answer-${index + 1}-${answerIndex + 1}" value="${answer}">
             <br>
-        `).join('')}
+        `).join('<br>')}
+        <br>
         <label>Correct Answer:</label>
-        <input class="correct-answer" type="text" name="correct-answer-${index + 1}" value="${question.correctAnswer}">
+        <input class="correct-answer" type="text" name="correct-answer-${index + 1}" value="${question.correctAnswer}"></div><br><br>
         `;
         document.getElementById("questions-container").appendChild(questionDiv);
         });

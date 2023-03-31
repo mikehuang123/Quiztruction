@@ -31,6 +31,44 @@ body, html {
    width: 5%;
    height: 5%;
 } 
+
+.container{
+  padding-top: 5%;
+  padding-left: 3%;
+  overflow: auto;
+}
+
+.container h1 , .container h3{
+  text-align: center;
+}
+
+
+
+h1{
+  display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+label{
+  color: #05042b;
+  font-weight: bold;
+ 
+
+  display: inline-block;
+  width: 200px;
+  text-align: left;
+  margin-left: 10%;
+  margin-right: 20%;
+}
+
+button{
+  float: left;
+}
 </style>
 </head>
 <body>
@@ -66,12 +104,13 @@ body, html {
 </nav>
 
 <!-- update quiz container -->
-<div>
-  <h1>Update</h1>
+<div class = "container">
+  <h1 >Update Quiz</h1><hr><br>
   <form class = "form">
-    <label for="name" >Name:</label>
-    <input type="text" id = "quiz-name" name="name" required><br><br>
-
+    <div class = inputDiv>
+      <label for="name" >Name:</label>
+      <input type="text" id = "quiz-name" name="name" required><br><br>
+    
     <label for="questions">Number of Questions:</label>
     <input type="number" id="quiz-questions" name="questions" required><br><br>
 
@@ -81,13 +120,16 @@ body, html {
         <option value="medium">Medium</option>
         <option value="hard">Hard</option>
     </select><br><br>
-
+  </div><br>
     <div id="questions-container"  class = "question" ></div>
-
-    <button id="add-question">Add Question</button>
-    <button id="update-quiz-form">Update Quiz</button>
+    <br>
+    <div class = inputDiv>
+        <button id="add-question">Add Question</button>
+        <button id="update-quiz-form">Update Quiz</button>
+    </div>
 </form>
 </div>
+<br><br><br>
 
 
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
