@@ -7,25 +7,10 @@
     box-sizing: border-box;
     color: #253858;
     cursor: pointer;
-    display: block;
-    flex: 1;
-    float: right;
-    font-family: Poppins, sans-serif;
-    font-size: 12px;
-    left: auto;
-    letter-spacing: 1px;
-    line-height: 19px;
-    margin-left: -15px;
-    margin-right: 15px;
-    margin-top: 15px;
-    padding: 5px 15px;
-    position: absolute;
-    right: 0;
     text-align: center;
-    text-decoration: none;
-    top: 0;
-    transition: background-color 150ms;
-    z-index: 30;
+    border: 1px solid rgb(1, 14, 1);
+    border-radius: 5px;
+    
   }
    
 #login-button#login-button.button.logout.login.w-button:active {
@@ -49,6 +34,10 @@
     color: grey;
     font-size: 18px;
   }
+  .cardContainer{
+    padding-top: 3%;
+    
+  }
   
   button {
     border: none;
@@ -62,15 +51,36 @@
     width: 100%;
     font-size: 18px;
   }
-  
-  a {
+
+  .cardContainer a {
+    flex: 1;
     text-decoration: none;
-    font-size: 22px;
+    outline: none;
+    text-align: center;
+    line-height: 3;
     color: black;
   }
   
-  button:hover, a:hover {
+  .cardContainer a:link,
+  .cardContainer a:visited,
+  .cardContainer a:focus {
+    background: palegoldenrod;
+    color: black;
+  }
+  
+  .cardContainer a:hover {
+    background: orange;
+  }
+  
+  .cardContainer a:active {
+    background: darkred;
+    color: white;
+  }
+  
+  .cardContainer button:hover {
     opacity: 0.7;
   }
+  
+  
 
  

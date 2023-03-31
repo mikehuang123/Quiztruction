@@ -5,8 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../CSS/profile.css">
 
   <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif; padding-top: "10%"; text-align: center;}
@@ -54,8 +56,9 @@ body, html {
       <i class="fa fa-bars"></i>
     </a>
   </div>
-  <div class = "container">
+  <div class = "cardContainer">
     <div class="card">
+      <img src="../IMAGES/userImage.jpg" alt="userImage" style="width:100%">
       <h1 id = "title">User</h1>
       <a id="login-button" ms-hide-element="true" href="./login.html" class="button logout login w-button">Login/Register</a>
       <button id = "logoutBtn" style="visibility:hidden;">Logout</button>
@@ -80,10 +83,7 @@ body, html {
 
 
 
-<!-- Footer -->
-<!-- <footer class="w3-center w3-black w3-padding-64">
-  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-</footer> -->
+
  
 <script>
   // Modal Image Gallery
@@ -135,6 +135,8 @@ body, html {
       localStorage.removeItem('loginId');
       location.reload();
   };
+
+ 
 </script>
 
 </body>
