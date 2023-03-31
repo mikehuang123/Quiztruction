@@ -87,6 +87,11 @@ body, html {
 
  
 <script>
+// check login
+if(localStorage.getItem("loginId") == null){
+  window.location = "login.html";
+}
+
 // Modal Image Gallery
 function onClick(element) {
   document.getElementById("img01").src = element.src;
