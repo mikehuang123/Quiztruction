@@ -19,32 +19,30 @@ let isEnd = false;
 console.log(quizSize);
 
 let setupQuiz = () =>{
-    // quiz name
-    title.innerHTML = quizData.quizInfo.name;
-    
-    // question
-    questionElement.innerHTML = Object.values(quizData.Questions)[pointer].question; 
+    console.log(pointer+ ". hiasd " + quizSize);
+    if(pointer <quizSize){
+        // quiz name
+        title.innerHTML = quizData.quizInfo.name;
+                
+        // question
+        questionElement.innerHTML = Object.values(quizData.Questions)[pointer].question; 
 
-    // answers
-    for(let i = 0; i < 4; i++){
-        if(i< Object.values(quizData.Questions)[pointer].answers.length){
-            options[i].innerHTML =  Object.values(quizData.Questions)[pointer].answers[i];
-        }
-        else{
-            options[i].innerHTML = "";
-        }
-        
-    }
-
-    for(let i = 0; i < 4; i++){
-        options[i].addEventListener("click", () => {
-            let select = i+1;
-            if(select.toString() == Object.values(quizData.Questions)[pointer].correctAnswer.toString()){
-                score += 1;
+        // answers
+        for(let i = 0; i < 4; i++){
+            if(i< Object.values(quizData.Questions)[pointer].answers.length){
+                options[i].innerHTML =  Object.values(quizData.Questions)[pointer].answers[i];
+            }
+            else{
+                options[i].innerHTML = "";
             }
             
+        }
+    }
+   
+
+    for(let i = 0; i < 4; i++){
+        options[i].addEventListener("click", () => { 
             //increment pointer and setup quiz
-            pointer++;
             if(pointer >= quizSize ){
                 // end show final result
                 result.innerHTML = `<h1>Your Result: ${score}</h1>`;
@@ -54,12 +52,25 @@ let setupQuiz = () =>{
                     }, 5000);
             }
             else{
+                let select = i;
+                if(select.toString() == Object.values(quizData.Questions)[pointer].correctAnswer.toString()){
+                    score += 1;
+                }
+                pointer++;
                 setupQuiz();
             }
             
+            
 
         });
-    }
+    
+
+        }
+    
+
+
+    
+    
 }
 setupQuiz();
 

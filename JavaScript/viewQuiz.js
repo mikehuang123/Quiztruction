@@ -85,7 +85,7 @@ db.collection("Quiz").get().then((querySnapshot) => {
         <button class="show-answer-btn">Show Answer</button>
         
         
-        <p class="answer" style="display: none;">Correct answer is: ${question.answers[question.correctAnswer-1]}</p>
+        <p class="answer" style="display: none;">Correct answer is: ${question.answers[question.correctAnswer]}</p>
         
       `;
 
