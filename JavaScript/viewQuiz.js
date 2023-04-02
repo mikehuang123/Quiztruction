@@ -40,8 +40,9 @@ db.collection("Quiz").get().then((querySnapshot) => {
         // Add event listener to the update quiz button
         const updateBtn = quizInfo.querySelector(".update-quiz-btn");
         updateBtn.addEventListener("click", () => {
+          console.log(localStorage.getItem("loginId") +" : " + quizData.quizInfo.userId);
             // validation if the current user is the quiz creator 
-            if(localStorage.getItem("userId") == quizData.quizInfo.userId){
+            if(localStorage.getItem("loginId") == quizData.quizInfo.userId){
               //console.log("Update quiz: " + doc.id);
               localStorage.setItem("quizId", doc.id);
               window.location = "updatequiz.html";
