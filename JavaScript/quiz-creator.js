@@ -4,30 +4,35 @@ var questionCompleted = false;
 const addButton = document.getElementById("addAnswer");
 const questionButton = document.getElementById("addQuestion");
 const answerText = document.getElementById("answer-text");
-
+let limit = 0;
 addButton.addEventListener("click", function() {
-    var forms = document.getElementsByTagName('form');
-    for(var i = 0; i < forms.length; i++){
-        if(i == questionNumber){
-            const lineBreak = document.createElement('br');
-            const container = document.getElementById("answer-container" + questionNumber);
-            const radio = document.createElement("input");
-            const radioLabel = document.createElement("label");
-            radio.setAttribute('id', 'radio' + numAnswers);
-            radioLabel.setAttribute('for', 'radio' + numAnswers);
-            if(answerText.value == null || answerText.value == ""){
-                return;
+    limit++;
+    if(limit <=4){
+        var forms = document.getElementsByTagName('form');
+        for(var i = 0; i < forms.length; i++){
+            if(i == questionNumber){
+                const lineBreak = document.createElement('br');
+                const container = document.getElementById("answer-container" + questionNumber);
+                const radio = document.createElement("input");
+                const radioLabel = document.createElement("label");
+                radio.setAttribute('id', 'radio' + numAnswers);
+                radioLabel.setAttribute('for', 'radio' + numAnswers);
+                if(answerText.value == null || answerText.value == ""){
+                    return;
+                }
+                radioLabel.innerHTML = answerText.value;
+                radio.type = "radio";
+                radio.name = "radio-group";
+                radio.value = numAnswers;
+                numAnswers++;
+                container.appendChild(radio);
+                radio.after(radioLabel);
+                radioLabel.after(lineBreak);
             }
-            radioLabel.innerHTML = answerText.value;
-            radio.type = "radio";
-            radio.name = "radio-group";
-            radio.value = numAnswers;
-            numAnswers++;
-            container.appendChild(radio);
-            radio.after(radioLabel);
-            radioLabel.after(lineBreak);
         }
     }
+   
+    
 });
 
 
